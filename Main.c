@@ -20,7 +20,7 @@ void validateRequestLine(char * method, char * uri, char * version){
 int main(int argc, char const *argv[])
 {
 	char * method = malloc(MAXCHARQ), * uri = malloc(MAXCHARQ), * version = malloc(MAXCHARQ), * line = malloc(MAXCHARQ), *prefix = malloc(MAXCHARQ), * sufix = malloc(MAXCHARQ);
-	char * host = malloc(MAXCHARQ), * messagebody = malloc(MAXCHARQ), * sport = malloc(MAXCHARQ);
+	char * host = malloc(MAXCHARQ), * messagebody = malloc(MAXCHARQ), * sport = malloc(MAXCHARQ), * requestTarget = malloc(MAXCHARQ);
 	int port;
 	size_t max;
 	host = "";
@@ -54,7 +54,7 @@ int main(int argc, char const *argv[])
 	}
 
 	getline(&messagebody, &max, stdin);				//Message body
-	
-	printf("%s %s %d R %ld %x \r\n", method, host, port, strlen(messagebody), xorString(messagebody));
+
+	printf("%s %s %d %s %ld %x \r\n", method, host, port, uri, strlen(messagebody), xorString(messagebody));
 	return 0;
 }
